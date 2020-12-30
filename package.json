@@ -1,0 +1,25 @@
+{
+  "name": "time-travel-agent",
+  "version": "1.0.0",
+  "description": "A game where you are a time traveling agent",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "build": "webpack --config webpack.js --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mkmorgan1/time-travel-agent.git"
+  },
+  "author": "mkmorgan1",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mkmorgan1/time-travel-agent/issues"
+  },
+  "homepage": "https://github.com/mkmorgan1/time-travel-agent#readme",
+  "devDependencies": {
+  },
+  "dependencies": {
+  }
+}
