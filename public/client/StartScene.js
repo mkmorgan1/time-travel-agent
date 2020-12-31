@@ -14,7 +14,8 @@ class StartScene extends Phaser.Scene {
 		this.load.image('ground', './assets/ground.png');
 
 		/*	SPRITES	*/
-		this.load.spritesheet('player', './assets/player.png', {frameWidth: 500, frameHeight: 500});
+		this.load.spritesheet('player', './assets/player1.png', {frameWidth: 500, frameHeight: 500});
+		// this.load.spritesheet('player', './assets/player.png', {frameWidth: 500, frameHeight: 500});
 		this.load.spritesheet('portal', './assets/portal.png', {frameWidth: 500, frameHeight: 500});
 		this.load.spritesheet('orb', './assets/orb.png', {frameWidth: 500, frameHeight: 500});
 		this.load.spritesheet('baddy', './assets/badGuy.png', {frameWidth: 500, frameHeight: 500});
@@ -41,7 +42,8 @@ class StartScene extends Phaser.Scene {
 		state.player.setCollideWorldBounds(true);
 		state.player.body.setGravityY(1000);
 		state.player.body.setSize(100,400);
-		state.player.body.setOffset(200,50);
+		// state.player.body.setOffset(200,50);
+		state.player.body.setOffset(200,100);
 
 
 
@@ -95,7 +97,9 @@ class StartScene extends Phaser.Scene {
 		this.physics.add.collider(state.baddy, state.ground);
 		this.physics.add.collider(state.player, state.baddy, () => {
 			// GAMEOVER TEXT
-			this.add.text(this.cameras.main.midPoint.x - 250, 300, 'Game Over', { fontSize: '100px', fill: '#FAEFF1' });
+			// this.add.text(this.cameras.main.midPoint.x - 260, 290, 'Game Over', { fontSize: '100px', fill: '#E3EFDC' });
+			// this.add.text(this.cameras.main.midPoint.x - 360, 390, 'Click To Restart', { fontSize: '75px', fill: '#E3EFDC' });
+			this.add.text(this.cameras.main.midPoint.x - 250, 300, 'Game Over', {fontSize: '100px', fill: '#FAEFF1' });
 			this.add.text(this.cameras.main.midPoint.x - 350, 400, 'Click To Restart', { fontSize: '75px', fill: '#FAEFF1' });
 			this.add.text(this.cameras.main.midPoint.x - 255, 295, 'Game Over', { fontSize: '100px', fill: '#ffa0d0' });
 			this.add.text(this.cameras.main.midPoint.x - 355, 395, 'Click To Restart', { fontSize: '75px', fill: '#ffa0d0' });
@@ -148,26 +152,30 @@ class StartScene extends Phaser.Scene {
 		})
 		this.anims.create({
 			key: 'run',
-			frames: this.anims.generateFrameNumbers('player', {start: 1, end: 4}),
-			frameRate: 10,
+			frames: this.anims.generateFrameNumbers('player', {start: 1, end: 9}),
+			// frames: this.anims.generateFrameNumbers('player', {start: 1, end: 4}),
+			frameRate: 25,
+			// frameRate: 10,
 			repeat: 0
 		})
 		this.anims.create({
 			key: 'shoot',
-			frames: this.anims.generateFrameNumbers('player', {start: 5, end: 8}),
-			frameRate: 10,
+			frames: this.anims.generateFrameNumbers('player', {start: 13, end: 22}),
+			// frames: this.anims.generateFrameNumbers('player', {start: 5, end: 8}),
+			frameRate: 20,
 			repeat: 0
 		})
 		this.anims.create({
 			key: 'idle',
-			frames: this.anims.generateFrameNumbers('player', {start: 1, end: 1}),
+			frames: this.anims.generateFrameNumbers('player', {start: 9, end: 10}),
+			//frames: this.anims.generateFrameNumbers('player', {start: 1, end: 1}),
 			frameRate: 5,
 			repeat: 0
 		})
 		this.anims.create({
 			key: 'baddy-movement',
 			frames: this.anims.generateFrameNumbers('baddy', {start: 0, end: 9}),
-			frameRate: 10,
+			frameRate: 20,
 			repeat: -1
 		})
 	}
@@ -179,12 +187,12 @@ class StartScene extends Phaser.Scene {
 				state.player.anims.play('shoot', true).once('animationcomplete', () => {
 
 					if (state.player.flipX && state.cursors.space.isDown) {
-						state.orb = this.physics.add.sprite(state.player.x - 25, state.player.y - 10, 'orb').setScale(.1);
+						state.orb = this.physics.add.sprite(state.player.x - 50, state.player.y - 10, 'orb').setScale(.1);
 						state.orb.anims.play('orb-rotate', true);
 						state.orb.body.velocity.x = - 1000;
 
 					} else if (!state.player.flipX && state.cursors.space.isDown) {
-						state.orb = this.physics.add.sprite(state.player.x + 25, state.player.y - 10, 'orb').setScale(.1);
+						state.orb = this.physics.add.sprite(state.player.x + 50, state.player.y - 10, 'orb').setScale(.1);
 						state.orb.anims.play('orb-rotate', true);
 						state.orb.body.velocity.x = 1000;
 					}
@@ -195,13 +203,13 @@ class StartScene extends Phaser.Scene {
 				state.player.anims.play('run', true).once('animationcomplete', () => {
 					state.player.anims.play('idle', true);
 				})
-				state.player.x += 5;
+				state.player.x += 10;
 			} else if (state.cursors.left.isDown) {
 				state.player.flipX = true;
 				state.player.anims.play('run', true).once('animationcomplete', () => {
 					state.player.anims.play('idle', true);
 				})
-				state.player.x -= 5;
+				state.player.x -= 10;
 			} else if (state.cursors.up.isDown) {
 				state.player.anims.play('run', true).once('animationcomplete', () => {
 					state.player.anims.play('idle', true);
