@@ -1,5 +1,8 @@
-// const Phaser = require('phaser');
+import Phaser from 'phaser';
+// import Level1 from './Level1.js';
+// import Level2 from './Level2.js';
 const state = {};
+
 class Level extends Phaser.Scene {
 	constructor(level) {
 		super(level)
@@ -8,6 +11,9 @@ class Level extends Phaser.Scene {
 			'Start': 'Level1',
 			'Level1': 'Level2',
 			'Level2': 'Level1',
+		}
+		this.state = {
+
 		}
 	}
 	preload() {
@@ -286,3 +292,38 @@ class Level extends Phaser.Scene {
 		}
 	}
 }
+
+// class Level1 extends Level {
+// 	constructor() {
+// 		super('Level1')
+// 		this.baddyY = [800,800,800,800,800,800,800,800,800,800];
+// 		this.levelName = 'LEVEL 1';
+// 	}
+// }
+
+// class Level2 extends Level {
+// 	constructor() {
+// 		super('Level2')
+// 		this.baddyY = [800,300,800,300,800,300,800,800,300,800];
+// 		this.levelName = 'LEVEL 2'
+// 	}
+// }
+
+// const config = {
+//   type: Phaser.AUTO,
+//   width: 1000,
+//   height: 1000,
+//   backgroundColor: "b9eaff",
+//   physics: {
+//     default: 'arcade',
+//     arcade: {
+//       enableBody: true,
+//       // debug: true
+//     }
+//   },
+//   scene: [Level1, Level2]
+// };
+
+// const game = new Phaser.Game(config);
+
+export default Level;

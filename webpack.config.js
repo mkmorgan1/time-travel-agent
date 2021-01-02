@@ -1,4 +1,6 @@
 const path = require('path');
+// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: './react/index.jsx',
@@ -17,8 +19,15 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        loader: ['style-loader', 'css-loader']
+        loader: ['style-loader', 'css-loader'] //MiniCssExtractPlugin.loader
       }
     ]
   }
+  // plugins: [
+  //   new CopyWebpackPlugin({
+  //     patterns: [
+  //       { from: './react/assets', to: 'assets' }
+  //     ]
+  //   })
+  // ]
 }

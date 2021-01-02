@@ -1,9 +1,7 @@
-//const Phaser = require('phaser');
-
-const gameState = {
-  score: 0
-};
-
+import Phaser from 'phaser';
+import Level from './Level.js';
+import Level1 from './Level1.js';
+import Level2 from './Level2.js';
 
 const config = {
   type: Phaser.AUTO,
@@ -21,3 +19,5 @@ const config = {
 };
 
 const game = new Phaser.Game(config);
+
+export default game;

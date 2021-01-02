@@ -1,4 +1,5 @@
-
+import Level from './Level.js';
+// const Phaser = require('phaser');
 class Level1 extends Level {
 	constructor() {
 		super('Level1')
@@ -6,3 +7,5 @@ class Level1 extends Level {
 		this.levelName = 'LEVEL 1';
 	}
 }
+
+export default Level1;
