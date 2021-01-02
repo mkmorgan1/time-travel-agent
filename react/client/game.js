@@ -1,11 +1,13 @@
 import Phaser from 'phaser';
+import Master from './Master.js';
+import StartScreen from './StartScreen';
 import Level from './Level.js';
 import Level1 from './Level1.js';
 import Level2 from './Level2.js';
 
 const config = {
-  type: Phaser.AUTO,
-  width: 1000,
+  type: Phaser.CANVAS, //AUTO
+  width: 1100,
   height: 1000,
   backgroundColor: "b9eaff",
   physics: {
@@ -15,7 +17,7 @@ const config = {
       // debug: true
     }
   },
-  scene: [Level1, Level2]
+  scene: [StartScreen, Level1, Level2]
 };
 
 const game = new Phaser.Game(config);

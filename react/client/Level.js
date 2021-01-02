@@ -1,37 +1,34 @@
-import Phaser from 'phaser';
-// import Level1 from './Level1.js';
-// import Level2 from './Level2.js';
+import Master from './Master.js';
+// import Phaser from 'phaser';
+
 const state = {};
+class Level extends Master {
+// class Level extends Phaser.Scene {
+	// constructor(level) {
+	// 	super(level)
+	// 	this.level = level;
+	// 	this.nextLevel = {
+	// 		'StartScreen': 'Level1',
+	// 		'Level1': 'Level2',
+	// 		'Level2': 'Level1',
+	// 	}
+	// }
+	// preload() {
+	// 	/*	BACKGROUNDS	*/
+	// 	this.load.image('city-1', 'https://time-travel-agent.s3.us-east-2.amazonaws.com/city1.png');
+	// 	this.load.image('city-2', 'https://time-travel-agent.s3.us-east-2.amazonaws.com/city2.png');
+	// 	this.load.image('trees-1', 'https://time-travel-agent.s3.us-east-2.amazonaws.com/forest.png');
+	// 	this.load.image('trees-2', 'https://time-travel-agent.s3.us-east-2.amazonaws.com/forest2.png');
+	// 	this.load.image('grass', 'https://time-travel-agent.s3.us-east-2.amazonaws.com/grass.png');
+	// 	this.load.image('ground', 'https://time-travel-agent.s3.us-east-2.amazonaws.com/ground.png');
 
-class Level extends Phaser.Scene {
-	constructor(level) {
-		super(level)
-		this.level = level;
-		this.nextLevel = {
-			'Start': 'Level1',
-			'Level1': 'Level2',
-			'Level2': 'Level1',
-		}
-		this.state = {
-
-		}
-	}
-	preload() {
-		/*	BACKGROUNDS	*/
-		this.load.image('city-1', './assets/city1.png');
-		this.load.image('city-2', './assets/city2.png');
-		this.load.image('trees-1', './assets/forest.png');
-		this.load.image('trees-2', './assets/forest2.png');
-		this.load.image('grass', './assets/grass.png');
-		this.load.image('ground', './assets/ground.png');
-
-		/*	SPRITES	*/
-		this.load.spritesheet('player', './assets/player1.png', {frameWidth: 500, frameHeight: 500});
-		this.load.spritesheet('portal', './assets/portal.png', {frameWidth: 500, frameHeight: 500});
-		this.load.spritesheet('orb', './assets/orb.png', {frameWidth: 500, frameHeight: 500});
-		this.load.spritesheet('baddy', './assets/badGuy.png', {frameWidth: 500, frameHeight: 500});
-		this.load.spritesheet('end', './assets/endPortal.png', {frameWidth: 125, frameHeight: 500});
-	}
+	// 	/*	SPRITES	*/
+	// 	this.load.spritesheet('player', 'https://time-travel-agent.s3.us-east-2.amazonaws.com/player1.png', {frameWidth: 500, frameHeight: 500});
+	// 	this.load.spritesheet('portal', 'https://time-travel-agent.s3.us-east-2.amazonaws.com/portal.png', {frameWidth: 500, frameHeight: 500});
+	// 	this.load.spritesheet('orb', 'https://time-travel-agent.s3.us-east-2.amazonaws.com/orb.png', {frameWidth: 500, frameHeight: 500});
+	// 	this.load.spritesheet('baddy', 'https://time-travel-agent.s3.us-east-2.amazonaws.com/badGuy.png', {frameWidth: 500, frameHeight: 500});
+	// 	this.load.spritesheet('end', 'https://time-travel-agent.s3.us-east-2.amazonaws.com/endPortal.png', {frameWidth: 125, frameHeight: 500});
+  // }
 
   create() {
 		state.active = true;
@@ -138,69 +135,69 @@ class Level extends Phaser.Scene {
 			state.baddy.create(x, y, 'baddy').setScale(.5);
 		}
 	}
-	createAnimations() {
-		this.anims.create({
-			key: 'portal-grow',
-			frames: this.anims.generateFrameNumbers('portal', {start: 0, end: 19}),
-			frameRate: 10,
-			repeat: 0
-		});
-		this.anims.create({
-			key: 'portal-open',
-			frames: this.anims.generateFrameNumbers('portal', {start: 16, end: 19}),
-			frameRate: 10,
-			repeat: 0
-		})
-		this.anims.create({
-			key: 'portal-return',
-			frames: this.anims.generateFrameNumbers('portal', {start: 0, end: 8}),
-			frameRate: 10,
-			isReversed: true,
-			repeat: 0
-		})
-		this.anims.create({
-			key: 'orb-rotate',
-			frames: this.anims.generateFrameNumbers('orb', {start: 0, end: 3}),
-			frameRate: 40,
-			repeat: -1
-		})
-		this.anims.create({
-			key: 'run',
-			frames: this.anims.generateFrameNumbers('player', {start: 1, end: 9}),
-			frameRate: 25,
-			repeat: 0
-		})
-		this.anims.create({
-			key: 'shoot',
-			frames: this.anims.generateFrameNumbers('player', {start: 13, end: 22}),
-			frameRate: 20,
-			repeat: 0
-		})
-		this.anims.create({
-			key: 'idle',
-			frames: this.anims.generateFrameNumbers('player', {start: 9, end: 10}),
-			frameRate: 5,
-			repeat: 0
-		})
-		this.anims.create({
-			key: 'baddy-movement',
-			frames: this.anims.generateFrameNumbers('baddy', {start: 0, end: 9}),
-			frameRate: 20,
-			repeat: -1
-		})
-		this.anims.create({
-			key: 'end-grow',
-			frames: this.anims.generateFrameNumbers('end', {start: 0, end: 19}),
-			frameRate: 10,
-			repeat: 0
-		})
-		this.anims.create({
-			key: 'end-open',
-			frames: this.anims.generateFrameNumbers('end', {start: 16, end: 19}),
-			frameRate: 10,
-			repeat: -1
-		})
-	}
+	// createAnimations() {
+	// 	this.anims.create({
+	// 		key: 'portal-grow',
+	// 		frames: this.anims.generateFrameNumbers('portal', {start: 0, end: 19}),
+	// 		frameRate: 10,
+	// 		repeat: 0
+	// 	});
+	// 	this.anims.create({
+	// 		key: 'portal-open',
+	// 		frames: this.anims.generateFrameNumbers('portal', {start: 16, end: 19}),
+	// 		frameRate: 10,
+	// 		repeat: 0
+	// 	})
+	// 	this.anims.create({
+	// 		key: 'portal-return',
+	// 		frames: this.anims.generateFrameNumbers('portal', {start: 0, end: 8}),
+	// 		frameRate: 10,
+	// 		isReversed: true,
+	// 		repeat: 0
+	// 	})
+	// 	this.anims.create({
+	// 		key: 'orb-rotate',
+	// 		frames: this.anims.generateFrameNumbers('orb', {start: 0, end: 3}),
+	// 		frameRate: 40,
+	// 		repeat: -1
+	// 	})
+	// 	this.anims.create({
+	// 		key: 'run',
+	// 		frames: this.anims.generateFrameNumbers('player', {start: 1, end: 9}),
+	// 		frameRate: 25,
+	// 		repeat: 0
+	// 	})
+	// 	this.anims.create({
+	// 		key: 'shoot',
+	// 		frames: this.anims.generateFrameNumbers('player', {start: 13, end: 22}),
+	// 		frameRate: 20,
+	// 		repeat: 0
+	// 	})
+	// 	this.anims.create({
+	// 		key: 'idle',
+	// 		frames: this.anims.generateFrameNumbers('player', {start: 9, end: 10}),
+	// 		frameRate: 5,
+	// 		repeat: 0
+	// 	})
+	// 	this.anims.create({
+	// 		key: 'baddy-movement',
+	// 		frames: this.anims.generateFrameNumbers('baddy', {start: 0, end: 9}),
+	// 		frameRate: 20,
+	// 		repeat: -1
+	// 	})
+	// 	this.anims.create({
+	// 		key: 'end-grow',
+	// 		frames: this.anims.generateFrameNumbers('end', {start: 0, end: 19}),
+	// 		frameRate: 10,
+	// 		repeat: 0
+	// 	})
+	// 	this.anims.create({
+	// 		key: 'end-open',
+	// 		frames: this.anims.generateFrameNumbers('end', {start: 16, end: 19}),
+	// 		frameRate: 10,
+	// 		repeat: -1
+	// 	})
+	// }
 
 	update() {
 		if (!state.pause) {
@@ -292,38 +289,5 @@ class Level extends Phaser.Scene {
 		}
 	}
 }
-
-// class Level1 extends Level {
-// 	constructor() {
-// 		super('Level1')
-// 		this.baddyY = [800,800,800,800,800,800,800,800,800,800];
-// 		this.levelName = 'LEVEL 1';
-// 	}
-// }
-
-// class Level2 extends Level {
-// 	constructor() {
-// 		super('Level2')
-// 		this.baddyY = [800,300,800,300,800,300,800,800,300,800];
-// 		this.levelName = 'LEVEL 2'
-// 	}
-// }
-
-// const config = {
-//   type: Phaser.AUTO,
-//   width: 1000,
-//   height: 1000,
-//   backgroundColor: "b9eaff",
-//   physics: {
-//     default: 'arcade',
-//     arcade: {
-//       enableBody: true,
-//       // debug: true
-//     }
-//   },
-//   scene: [Level1, Level2]
-// };
-
-// const game = new Phaser.Game(config);
 
 export default Level;
