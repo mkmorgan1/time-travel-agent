@@ -3,35 +3,10 @@ import Master from './Master.js';
 
 const state = {};
 class Level extends Master {
-// class Level extends Phaser.Scene {
-	// constructor(level) {
-	// 	super(level)
-	// 	this.level = level;
-	// 	this.nextLevel = {
-	// 		'StartScreen': 'Level1',
-	// 		'Level1': 'Level2',
-	// 		'Level2': 'Level1',
-	// 	}
-	// }
-	// preload() {
-	// 	/*	BACKGROUNDS	*/
-	// 	this.load.image('city-1', 'https://time-travel-agent.s3.us-east-2.amazonaws.com/city1.png');
-	// 	this.load.image('city-2', 'https://time-travel-agent.s3.us-east-2.amazonaws.com/city2.png');
-	// 	this.load.image('trees-1', 'https://time-travel-agent.s3.us-east-2.amazonaws.com/forest.png');
-	// 	this.load.image('trees-2', 'https://time-travel-agent.s3.us-east-2.amazonaws.com/forest2.png');
-	// 	this.load.image('grass', 'https://time-travel-agent.s3.us-east-2.amazonaws.com/grass.png');
-	// 	this.load.image('ground', 'https://time-travel-agent.s3.us-east-2.amazonaws.com/ground.png');
-
-	// 	/*	SPRITES	*/
-	// 	this.load.spritesheet('player', 'https://time-travel-agent.s3.us-east-2.amazonaws.com/player1.png', {frameWidth: 500, frameHeight: 500});
-	// 	this.load.spritesheet('portal', 'https://time-travel-agent.s3.us-east-2.amazonaws.com/portal.png', {frameWidth: 500, frameHeight: 500});
-	// 	this.load.spritesheet('orb', 'https://time-travel-agent.s3.us-east-2.amazonaws.com/orb.png', {frameWidth: 500, frameHeight: 500});
-	// 	this.load.spritesheet('baddy', 'https://time-travel-agent.s3.us-east-2.amazonaws.com/badGuy.png', {frameWidth: 500, frameHeight: 500});
-	// 	this.load.spritesheet('end', 'https://time-travel-agent.s3.us-east-2.amazonaws.com/endPortal.png', {frameWidth: 125, frameHeight: 500});
-  // }
 
   create() {
 		state.active = true;
+		state.font = `'Staatliches', cursive`;
 
 		/*	FOREST	*/
 		state.trees2 = this.add.image(2500,750, 'trees-2').setTint('0xccaacc');
@@ -43,9 +18,7 @@ class Level extends Master {
 		state.city1 = this.add.image(2500,250,'city-1');
 
 		/* Title */
-		state.titleWhite = this.add.text(25, 25, `${this.levelName}`, {font: `50px 'Staatliches', cursive`,fill: '#FAEFF1'}).setOrigin(0,0);
-		state.titlePink = this.add.text(20, 20, `${this.levelName}`, {font: `50px 'Staatliches', cursive`,fill: '#ffa0d0'}).setOrigin(0,0);
-
+		state.title = this.createText(25, 25, this.levelName, '60px', );
 		/*	PLAYER	*/
 		state.player = this.physics.add.sprite(50,300, 'player').setScale(.5);
 		state.player.setCollideWorldBounds(true);
@@ -54,6 +27,7 @@ class Level extends Master {
 		state.player.body.setOffset(200,100);
 
 		/*	END PORTAL	*/
+		state.endOpen = false;
 		state.end = this.physics.add.group();
 
 		/*	BADDY	*/
@@ -65,10 +39,6 @@ class Level extends Master {
 		state.ground.create(2500,500, 'ground');
 		state.ground.create(2500,0, 'ground');
 		state.ground.create(2500,1000, 'ground');
-
-		/* END */
-		state.endOpen = false;
-		// state.end = this.physics.add.sprite(500, 5000, 'end');
 
 		/*	ANIMATIONS CREATOR FUNCTION / CURSORS	*/
 		state.cursors = this.input.keyboard.createCursorKeys();
@@ -101,11 +71,21 @@ class Level extends Master {
 		this.physics.add.collider(state.player, state.ground);
 		this.physics.add.collider(state.baddy, state.ground);
 		this.physics.add.collider(state.player, state.baddy, () => {
-			// GAMEOVER TEXT
-			this.add.text(this.cameras.main.midPoint.x - 250, 300, 'Game Over', {font: `150px 'Staatliches', cursive`, fill: '#FAEFF1' });
-			this.add.text(this.cameras.main.midPoint.x - 250, 500, 'Click To Restart', { font: `95px 'Staatliches', cursive`, fill: '#FAEFF1' });
-			this.add.text(this.cameras.main.midPoint.x - 255, 295, 'Game Over', { font: `150px 'Staatliches', cursive`, fill: '#ffa0d0' });
-			this.add.text(this.cameras.main.midPoint.x - 255, 495, 'Click To Restart', { font: `95px 'Staatliches', cursive`, fill: '#ffa0d0' });
+			/*	GAMEOVER TEXT	*/
+			state.gameOverTextSize = '175px';
+			state.centerX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
+			state.centerY = this.cameras.main.worldView.y + this.cameras.main.height / 2;
+			state.optionsTextSize = '105px';
+			state.rectangle = this.add.rectangle(state.centerX, state.centerY, 750, 500, 0xffa0d0)
+
+			this.add.rectangle(state.centerX - 5, state.centerY - 5, 750, 500, 0xABF7D0)
+			// GAME OVER
+			state.gameOver = this.createText(state.centerX, 350, 'Game Over', state.gameOverTextSize).setOrigin(.5);
+			// RESTART
+			state.clickRestart = this.createText(state.centerX, 525, 'Restart', state.optionsTextSize).setOrigin(.5);
+			// MAIN MENUE
+			state.clickMain = this.createText(state.centerX, 625, 'Main Menue', state.optionsTextSize).setOrigin(.5);
+
 			// PAUSING EVERYTHING
 			state.pause = true;
 			this.physics.pause();

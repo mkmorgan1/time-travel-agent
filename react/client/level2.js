@@ -1,5 +1,5 @@
 import Level from './Level.js';
-// const Phaser = require('phaser');
+
 class Level2 extends Level {
 	constructor() {
 		super('Level2')
