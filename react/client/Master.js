@@ -41,6 +41,12 @@ class Master extends Phaser.Scene {
 			repeat: 0
 		})
 		this.anims.create({
+			key: 'portal-open-forever',
+			frames: this.anims.generateFrameNumbers('portal', {start: 16, end: 19}),
+			frameRate: 10,
+			repeat: -1
+		})
+		this.anims.create({
 			key: 'portal-return',
 			frames: this.anims.generateFrameNumbers('portal', {start: 0, end: 8}),
 			frameRate: 10,

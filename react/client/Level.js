@@ -43,10 +43,8 @@ class Level extends Master {
 		state.city1 = this.add.image(2500,250,'city-1');
 
 		/* Title */
-		this.add.text(20, 20, `${this.levelName}`, {font: "40px Times New Roman", fill: "#ffa0d0"}).setOrigin(0,0);
-
-		// this.add.text(20, 20, 'TIME TRAVELER AGENT', {font: "40px Times New Roman", fill: "#ffa0d0"}).setOrigin(0,0);
-		// this.add.text(20, 60, "by Matt", { font: "20px Times New Roman", fill: "#ffa0d0"}).setOrigin(0,0);
+		state.titleWhite = this.add.text(25, 25, `${this.levelName}`, {font: `50px 'Staatliches', cursive`,fill: '#FAEFF1'}).setOrigin(0,0);
+		state.titlePink = this.add.text(20, 20, `${this.levelName}`, {font: `50px 'Staatliches', cursive`,fill: '#ffa0d0'}).setOrigin(0,0);
 
 		/*	PLAYER	*/
 		state.player = this.physics.add.sprite(50,300, 'player').setScale(.5);
@@ -104,10 +102,10 @@ class Level extends Master {
 		this.physics.add.collider(state.baddy, state.ground);
 		this.physics.add.collider(state.player, state.baddy, () => {
 			// GAMEOVER TEXT
-			this.add.text(this.cameras.main.midPoint.x - 250, 300, 'Game Over', {fontSize: '100px', fill: '#FAEFF1' });
-			this.add.text(this.cameras.main.midPoint.x - 350, 400, 'Click To Restart', { fontSize: '75px', fill: '#FAEFF1' });
-			this.add.text(this.cameras.main.midPoint.x - 255, 295, 'Game Over', { fontSize: '100px', fill: '#ffa0d0' });
-			this.add.text(this.cameras.main.midPoint.x - 355, 395, 'Click To Restart', { fontSize: '75px', fill: '#ffa0d0' });
+			this.add.text(this.cameras.main.midPoint.x - 250, 300, 'Game Over', {font: `150px 'Staatliches', cursive`, fill: '#FAEFF1' });
+			this.add.text(this.cameras.main.midPoint.x - 250, 500, 'Click To Restart', { font: `95px 'Staatliches', cursive`, fill: '#FAEFF1' });
+			this.add.text(this.cameras.main.midPoint.x - 255, 295, 'Game Over', { font: `150px 'Staatliches', cursive`, fill: '#ffa0d0' });
+			this.add.text(this.cameras.main.midPoint.x - 255, 495, 'Click To Restart', { font: `95px 'Staatliches', cursive`, fill: '#ffa0d0' });
 			// PAUSING EVERYTHING
 			state.pause = true;
 			this.physics.pause();
@@ -135,69 +133,6 @@ class Level extends Master {
 			state.baddy.create(x, y, 'baddy').setScale(.5);
 		}
 	}
-	// createAnimations() {
-	// 	this.anims.create({
-	// 		key: 'portal-grow',
-	// 		frames: this.anims.generateFrameNumbers('portal', {start: 0, end: 19}),
-	// 		frameRate: 10,
-	// 		repeat: 0
-	// 	});
-	// 	this.anims.create({
-	// 		key: 'portal-open',
-	// 		frames: this.anims.generateFrameNumbers('portal', {start: 16, end: 19}),
-	// 		frameRate: 10,
-	// 		repeat: 0
-	// 	})
-	// 	this.anims.create({
-	// 		key: 'portal-return',
-	// 		frames: this.anims.generateFrameNumbers('portal', {start: 0, end: 8}),
-	// 		frameRate: 10,
-	// 		isReversed: true,
-	// 		repeat: 0
-	// 	})
-	// 	this.anims.create({
-	// 		key: 'orb-rotate',
-	// 		frames: this.anims.generateFrameNumbers('orb', {start: 0, end: 3}),
-	// 		frameRate: 40,
-	// 		repeat: -1
-	// 	})
-	// 	this.anims.create({
-	// 		key: 'run',
-	// 		frames: this.anims.generateFrameNumbers('player', {start: 1, end: 9}),
-	// 		frameRate: 25,
-	// 		repeat: 0
-	// 	})
-	// 	this.anims.create({
-	// 		key: 'shoot',
-	// 		frames: this.anims.generateFrameNumbers('player', {start: 13, end: 22}),
-	// 		frameRate: 20,
-	// 		repeat: 0
-	// 	})
-	// 	this.anims.create({
-	// 		key: 'idle',
-	// 		frames: this.anims.generateFrameNumbers('player', {start: 9, end: 10}),
-	// 		frameRate: 5,
-	// 		repeat: 0
-	// 	})
-	// 	this.anims.create({
-	// 		key: 'baddy-movement',
-	// 		frames: this.anims.generateFrameNumbers('baddy', {start: 0, end: 9}),
-	// 		frameRate: 20,
-	// 		repeat: -1
-	// 	})
-	// 	this.anims.create({
-	// 		key: 'end-grow',
-	// 		frames: this.anims.generateFrameNumbers('end', {start: 0, end: 19}),
-	// 		frameRate: 10,
-	// 		repeat: 0
-	// 	})
-	// 	this.anims.create({
-	// 		key: 'end-open',
-	// 		frames: this.anims.generateFrameNumbers('end', {start: 16, end: 19}),
-	// 		frameRate: 10,
-	// 		repeat: -1
-	// 	})
-	// }
 
 	update() {
 		if (!state.pause) {
