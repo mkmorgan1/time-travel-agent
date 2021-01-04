@@ -11,12 +11,8 @@ class Tutorial2 extends Master {
     this.createBackground(state);
     state.player = this.createGravityPlayer(500, 300);
 
-    /*  MOVE TEXT  */
-    state.headerTextBackground = this.add.rectangle(30,35,0,0, 0x0CE6FF);
-    state.headerText = this.createText(40, 50, ' Portal to the past to reach the end', '75px');
-    const headerTextBounds = state.headerText.getBounds();
-    state.headerTextBackground.height = headerTextBounds.height + 30;
-    state.headerTextBackground.width = headerTextBounds.width + 50;
+    /*  PORTAL TEXT  */
+    this.createTextAndShadowedBackground('header', 40, 50, ' Portal to the past to reach the end', '75px', state);
 
 
     /*  BACK TEXT  */

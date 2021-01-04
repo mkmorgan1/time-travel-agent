@@ -6,12 +6,13 @@ class Master extends Phaser.Scene {
 		this.nextLevel = {
 			'Tutorial2': 'Level1',
 			'Level1': 'Level2',
-			'Level2': 'Level1',
+			'Level2': 'Credits',
 		}
+		this.boxShadow = 0x0CE6FF;
 		this.textColor = '#FF76FF';
 		this.color = 0xFF76FF;
-		this.hoverColor = 0xFF0CFF;
 		this.hoverTextColor = '#FF0CFF';
+		this.hoverColor = 0xFF0CFF;
 		this.textShadowColor = '#FAEFF1';
 		this.fontChoice = `'Staatliches', cursive`;
   }
@@ -59,6 +60,18 @@ class Master extends Phaser.Scene {
 
 	createText(x, y, string, fontSize, shadow = 5) {
 		return (this.add.text(x, y, string, { font: `${fontSize} ${this.fontChoice}`, fill: this.textColor}).setShadow(shadow, shadow, this.textShadowColor));
+	}
+
+	createTextAndShadowedBackground(name, x, y, string, px, state) {
+    state.name = {};
+    state.name.background = this.add.rectangle(x - 5,y - 5,0,0, this.hoverColor);
+    state.name.backgroundShadow = this.add.rectangle(state.name.background.x - 5, state.name.background.y - 5, 0, 0, this.boxShadow);
+    state.name.text = this.createText(x, y, string, px);
+    const textBounds = state.name.text.getBounds();
+    state.name.background.height = textBounds.height + 30;
+    state.name.background.width = textBounds.width + 50;
+    state.name.backgroundShadow.height = textBounds.height + 30;
+    state.name.backgroundShadow.width = textBounds.width + 50;
 	}
 
 	textHoverFeature(text) {

@@ -17,10 +17,10 @@ const config = {
     default: 'arcade',
     arcade: {
       enableBody: true,
-      debug: true
+      // debug: true
     }
   },
-  scene: [Credits, StartScreen, Tutorial1, Tutorial2, Level1, Level2]
+  scene: [StartScreen, Tutorial1, Tutorial2, Level1, Level2, Credits]
 };
 
 const game = new Phaser.Game(config);
