@@ -113,6 +113,12 @@ class Master extends Phaser.Scene {
 			repeat: 0
 		})
 		this.anims.create({
+			key: 'dance',
+			frames: this.anims.generateFrameNumbers('player', {start: 4, end: 8}),
+			frameRate: 5,
+			repeat: -1
+		})
+		this.anims.create({
 			key: 'shoot',
 			frames: this.anims.generateFrameNumbers('player', {start: 13, end: 22}),
 			frameRate: 20,

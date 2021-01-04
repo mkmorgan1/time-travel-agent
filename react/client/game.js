@@ -6,6 +6,7 @@ import Tutorial2 from './Tutorial2.js';
 import Level from './Level.js';
 import Level1 from './Level1.js';
 import Level2 from './Level2.js';
+import Credits from './Credits.js';
 
 const config = {
   type: Phaser.CANVAS, //AUTO
@@ -19,7 +20,7 @@ const config = {
       debug: true
     }
   },
-  scene: [StartScreen, Tutorial1, Tutorial2, Level1, Level2]
+  scene: [Credits, StartScreen, Tutorial1, Tutorial2, Level1, Level2]
 };
 
 const game = new Phaser.Game(config);
