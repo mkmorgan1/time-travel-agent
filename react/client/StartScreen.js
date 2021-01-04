@@ -9,24 +9,33 @@ class StartScreen extends Master {
 
   create() {
     /*  PORTAL  */
-    state.portal = this.physics.add.sprite(550, 525, 'portal').setScale(1.5);
+    state.portal = this.physics.add.sprite(550, 475, 'portal').setScale(1.5);
 
     /*  PLAYER  */
-    state.player = this.add.sprite(550,450, 'player', 3);
+    state.player = this.add.sprite(550,400, 'player', 3);
     state.player.angle = -20;
 
     /*  TITLE  */
-    state.gameTitle = this.createText(205, 155, 'TIME TRAVEL AGENT', '100px');
+    state.gameTitle = this.createText(205, 110, 'TIME TRAVEL AGENT', '100px');
     state.gameTitle.angle = -10;
 
     /*  START  */
-    state.start = this.createText(405, 885, 'CLICK TO START', '74px').setInteractive();
+    state.start = this.createText(405, 800, 'CLICK TO START', '74px').setInteractive();
     state.start.angle = -10;
+
+    /*  TUTORIAL  */
+    state.tutorial = this.createText(450, 885, 'How To Play', '74px').setInteractive();
+    state.tutorial.angle = -10;
 
     /*  LISTENER FUNTIONS  */
     this.textHoverFeature(state.start);
     state.start.on('pointerdown', () => {
       this.scene.start('Level1');
+    }, this);
+
+    this.textHoverFeature(state.tutorial);
+    state.tutorial.on('pointerdown', () => {
+      this.scene.start('Tutorial1');
     }, this);
 
     this.createAnimations();

@@ -30,6 +30,30 @@ class Master extends Phaser.Scene {
 		this.load.spritesheet('end', 'https://time-travel-agent.s3.us-east-2.amazonaws.com/endPortal.png', {frameWidth: 125, frameHeight: 500});
 	}
 
+	createBackground(obj) {
+		/*	FOREST	*/
+		obj.trees2 = this.add.image(2500,750, 'trees-2').setTint('0xccaacc');
+		obj.grass = this.add.image(2500,750,'grass');
+		obj.trees1 = this.add.image(2500,700,'trees-1');
+		/*	CITY	*/
+		obj.city2 = this.add.image(2500,250, 'city-2');
+		obj.city1 = this.add.image(2500,250,'city-1');
+		/*	GROUND	*/
+		obj.ground = this.physics.add.staticGroup();
+		obj.ground.create(2500,500, 'ground');
+		obj.ground.create(2500,0, 'ground');
+		obj.ground.create(2500,1000, 'ground');
+	}
+
+	createGravityPlayer(x, y) {
+		const plyr = this.physics.add.sprite(x, y, 'player').setScale(.5);
+		plyr.setCollideWorldBounds(true);
+		plyr.body.setGravityY(1000);
+		plyr.body.setSize(100,400);
+		plyr.body.setOffset(200,100);
+		return plyr;
+	}
+
 	createText(x, y, string, fontSize, shadow = 5) {
 		return (this.add.text(x, y, string, { font: `${fontSize} ${this.fontChoice}`, fill: this.textColor}).setShadow(shadow, shadow, this.textShadowColor));
 	}

@@ -6,25 +6,24 @@ class Level extends Master {
 
   create() {
 		state.active = true;
-		state.font = `'Staatliches', cursive`;
-
-		/*	FOREST	*/
-		state.trees2 = this.add.image(2500,750, 'trees-2').setTint('0xccaacc');
-		state.grass = this.add.image(2500,750,'grass');
-		state.trees1 = this.add.image(2500,700,'trees-1');
-
-		/*	CITY	*/
-		state.city2 = this.add.image(2500,250, 'city-2');
-		state.city1 = this.add.image(2500,250,'city-1');
+		this.createBackground(state);
+		// /*	FOREST	*/
+		// state.trees2 = this.add.image(2500,750, 'trees-2').setTint('0xccaacc');
+		// state.grass = this.add.image(2500,750,'grass');
+		// state.trees1 = this.add.image(2500,700,'trees-1');
+		// /*	CITY	*/
+		// state.city2 = this.add.image(2500,250, 'city-2');
+		// state.city1 = this.add.image(2500,250,'city-1');
+		// /*	GROUND	*/
+		// state.ground = this.physics.add.staticGroup();
+		// state.ground.create(2500,500, 'ground');
+		// state.ground.create(2500,0, 'ground');
+		// state.ground.create(2500,1000, 'ground');
 
 		/* Title */
 		state.title = this.createText(25, 25, this.levelName, '60px', );
 		/*	PLAYER	*/
-		state.player = this.physics.add.sprite(50,300, 'player').setScale(.5);
-		state.player.setCollideWorldBounds(true);
-		state.player.body.setGravityY(1000);
-		state.player.body.setSize(100,400);
-		state.player.body.setOffset(200,100);
+		state.player = this.createGravityPlayer(50, 300);
 
 		/*	END PORTAL	*/
 		state.endOpen = false;
@@ -34,11 +33,6 @@ class Level extends Master {
 		state.baddy = this.physics.add.group();
 		this.createBaddies();
 
-		/*	GROUND	*/
-		state.ground = this.physics.add.staticGroup();
-		state.ground.create(2500,500, 'ground');
-		state.ground.create(2500,0, 'ground');
-		state.ground.create(2500,1000, 'ground');
 
 		/*	ANIMATIONS CREATOR FUNCTION / CURSORS	*/
 		state.cursors = this.input.keyboard.createCursorKeys();
@@ -126,7 +120,7 @@ class Level extends Master {
 	update() {
 		if (!state.pause) {
 			/* SPACE SHOOTS ORB THEN PORTAL OPENS	*/
-			if (Phaser.Input.Keyboard.JustDown(state.cursors.space) && !state.alreadyOrb) {
+			if (Phaser.Input.Keyboard.JustDown(state.cursors.space)) {
 				state.player.anims.play('shoot', true).once('animationcomplete', () => {
 
 					if (state.player.flipX && state.cursors.space.isDown) {
