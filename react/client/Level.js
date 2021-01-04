@@ -76,15 +76,31 @@ class Level extends Master {
 			state.centerX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
 			state.centerY = this.cameras.main.worldView.y + this.cameras.main.height / 2;
 			state.optionsTextSize = '105px';
+			// RECTANGLE
 			state.rectangle = this.add.rectangle(state.centerX, state.centerY, 750, 500, 0xffa0d0)
-
-			this.add.rectangle(state.centerX - 5, state.centerY - 5, 750, 500, 0xABF7D0)
+			this.add.rectangle(state.centerX - 5, state.centerY - 5, 750, 500, 0x0CE6FF)
 			// GAME OVER
 			state.gameOver = this.createText(state.centerX, 350, 'Game Over', state.gameOverTextSize).setOrigin(.5);
 			// RESTART
-			state.clickRestart = this.createText(state.centerX, 525, 'Restart', state.optionsTextSize).setOrigin(.5);
+			state.restartText = this.createText(state.centerX, 525, 'Restart', state.optionsTextSize).setOrigin(.5).setInteractive();
+			this.textHoverFeature(state.restartText);
+			state.restartText.on('pointerdown', () => {
+				this.anims.resumeAll();
+				this.scene.restart();
+				state.pause = false;
+				state.portalOpen = false;
+			}, this);
+
 			// MAIN MENUE
-			state.clickMain = this.createText(state.centerX, 625, 'Main Menue', state.optionsTextSize).setOrigin(.5);
+			state.mainText = this.createText(state.centerX, 625, 'Main Menue', state.optionsTextSize).setOrigin(.5).setInteractive();
+			this.textHoverFeature(state.mainText);
+			state.mainText.on('pointerdown', () => {
+				this.scene.stop(this.level);
+				this.scene.start('StartScreen');
+				state.pause = false;
+				state.portalOpen = false;
+				this.anims.resumeAll();
+			});
 
 			// PAUSING EVERYTHING
 			state.pause = true;
@@ -92,13 +108,6 @@ class Level extends Master {
 			this.anims.pauseAll();
 			Phaser.Actions.Call(state.baddy.getChildren(), (child) => {
 				child.move.stop();
-			});
-			// RESTART FUNCTION
-			this.input.once('pointerdown', () =>{
-				this.anims.resumeAll();
-				this.scene.restart();
-				state.pause = false;
-				state.portalOpen = false;
 			});
 		})
 		this.physics.add.collider(state.player, state.end, () => {

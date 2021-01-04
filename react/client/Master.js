@@ -8,7 +8,7 @@ class Master extends Phaser.Scene {
 			'Level1': 'Level2',
 			'Level2': 'Level1',
 		}
-		this.textColor = '#ffa0d0';
+		this.textColor = '#FF9CFF';
 		this.textShadowColor = '#FAEFF1';
 		this.fontChoice = `'Staatliches', cursive`;
   }
@@ -28,9 +28,20 @@ class Master extends Phaser.Scene {
 		this.load.spritesheet('orb', 'https://time-travel-agent.s3.us-east-2.amazonaws.com/orb.png', {frameWidth: 500, frameHeight: 500});
 		this.load.spritesheet('baddy', 'https://time-travel-agent.s3.us-east-2.amazonaws.com/badGuy.png', {frameWidth: 500, frameHeight: 500});
 		this.load.spritesheet('end', 'https://time-travel-agent.s3.us-east-2.amazonaws.com/endPortal.png', {frameWidth: 125, frameHeight: 500});
-  }
+	}
+
 	createText(x, y, string, fontSize, shadow = 5) {
 		return (this.add.text(x, y, string, { font: `${fontSize} ${this.fontChoice}`, fill: this.textColor}).setShadow(shadow, shadow, this.textShadowColor));
+	}
+
+	textHoverFeature(text) {
+		text.on('pointerover', () => {
+      text.setShadow(3, 3, this.textShadowColor)
+		});
+		text.on('pointerout', () => {
+      text.setShadow(5, 5, this.textShadowColor)
+		})
+
 	}
 
   createAnimations() {
