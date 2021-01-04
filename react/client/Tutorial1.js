@@ -45,25 +45,6 @@ class Tutorial1 extends Master {
   update() {
     this.shootAnimation(state.shooter, state);
     this.characterMovement(state.walker, state);
-
-    // if (state.cursors.right.isDown) {
-    //   state.walker.flipX = false;
-    //   state.walker.anims.play('run', true).once('animationcomplete', () => {
-    //     state.walker.anims.play('idle', true);
-    //   })
-    //   state.walker.x += 10;
-    // } else if (state.cursors.left.isDown) {
-    //   state.walker.flipX = true;
-    //   state.walker.anims.play('run', true).once('animationcomplete', () => {
-    //     state.walker.anims.play('idle', true);
-    //   })
-    //   state.walker.x -= 10;
-    // } else if (state.cursors.up.isDown) {
-    //   state.walker.anims.play('run', true).once('animationcomplete', () => {
-    //     state.walker.anims.play('idle', true);
-    //   })
-    //   state.walker.y -= 10;
-    // }
   }
 }
 
