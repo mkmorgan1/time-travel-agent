@@ -106,62 +106,8 @@ class Level extends Master {
 
 	update() {
 		if (!state.pause) {
-			/* SPACE SHOOTS ORB THEN PORTAL OPENS	*/
-			if (Phaser.Input.Keyboard.JustDown(state.cursors.space)) {
-				state.player.anims.play('shoot', true).once('animationcomplete', () => {
-
-					if (state.player.flipX && state.cursors.space.isDown) {
-						state.orb = this.physics.add.sprite(state.player.x - 50, state.player.y - 10, 'orb').setScale(.1);
-						state.orb.anims.play('orb-rotate', true);
-						state.orb.body.velocity.x = - 1000;
-
-					} else if (!state.player.flipX && state.cursors.space.isDown) {
-						state.orb = this.physics.add.sprite(state.player.x + 50, state.player.y - 10, 'orb').setScale(.1);
-						state.orb.anims.play('orb-rotate', true);
-						state.orb.body.velocity.x = 1000;
-					}
-				})
-				/*	MOVEMENT	*/
-			} else if (state.cursors.right.isDown) {
-				state.player.flipX = false;
-				state.player.anims.play('run', true).once('animationcomplete', () => {
-					state.player.anims.play('idle', true);
-				})
-				state.player.x += 10;
-			} else if (state.cursors.left.isDown) {
-				state.player.flipX = true;
-				state.player.anims.play('run', true).once('animationcomplete', () => {
-					state.player.anims.play('idle', true);
-				})
-				state.player.x -= 10;
-			} else if (state.cursors.up.isDown) {
-				state.player.anims.play('run', true).once('animationcomplete', () => {
-					state.player.anims.play('idle', true);
-				})
-				state.player.y -= 10;
-			}
-		}
-
-		/*	ORB SHOOTS PORTAL OPENS	*/
-		if (state.orb && state.orb.body && Phaser.Math.Distance.Between(state.orb.x, state.orb.y, state.player.x, state.player.y) > 200) {
-			// DELETES EXISTING PORTAL
-			if (state.portal) {
-				state.portal.destroy();
-			}
-			// CREATES PORTAL
-			state.orb.body.velocity.x = 0;
-			state.portal = this.physics.add.sprite(state.orb.x, state.orb.y, 'portal').setScale(.5);
-			state.portal.body.setSize(400, 400);
-			state.portal.body.setOffset(50, 50);
-			state.orb.destroy();
-			state.portalOpen = true;
-				state.portal.anims.play('portal-grow').once('animationcomplete', () => {
-						state.portal.anims.playReverse('portal-grow').once('animationcomplete', () => {
-							console.log('done again')
-							state.portal.destroy();
-							state.portalOpen = false;
-						})
-				})
+			this.shootAnimation(state.player, state);
+    	this.characterMovement(state.player, state);
 		}
 		/*	TRAVELING CONDITIONAL	*/
 		if (state.portalOpen) {
