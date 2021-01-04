@@ -58,7 +58,7 @@ class Level extends Master {
 			state.centerY = this.cameras.main.worldView.y + this.cameras.main.height / 2;
 			state.optionsTextSize = '105px';
 			// RECTANGLE
-			state.rectangle = this.add.rectangle(state.centerX, state.centerY, 750, 500, 0xffa0d0)
+			state.rectangle = this.add.rectangle(state.centerX, state.centerY, 750, 500, this.hoverColor)
 			this.add.rectangle(state.centerX - 5, state.centerY - 5, 750, 500, 0x0CE6FF)
 			// GAME OVER
 			state.gameOver = this.createText(state.centerX, 350, 'Game Over', state.gameOverTextSize).setOrigin(.5);
@@ -108,25 +108,9 @@ class Level extends Master {
 		if (!state.pause) {
 			this.shootAnimation(state.player, state);
     	this.characterMovement(state.player, state);
+			this.portalTravel(state.player, state);
 		}
-		/*	TRAVELING CONDITIONAL	*/
-		if (state.portalOpen) {
-			if (Phaser.Math.Distance.Between(state.portal.x, state.portal.y, state.player.x, state.player.y) < 20) {
-				if (state.player.y < 500) {
-					state.player.y = 850;
-					state.return = this.physics.add.sprite(state.player.x, state.player.y, 'portal').setScale(.5);
-					state.return.anims.playReverse('portal-return').once('animationcomplete', () => {
-						state.return.destroy();
-					})
-				} else {
-					state.player.y = 350;
-					state.return = this.physics.add.sprite(state.player.x, state.player.y, 'portal').setScale(.5);
-					state.return.anims.playReverse('portal-return').once('animationcomplete', () => {
-						state.return.destroy();
-					})
-				}
-			}
-		}
+
 		/*	END PORTAL	*/
 		if (state.player.x > 4500 && !state.endOpen) {
 			state.endOpen = true;

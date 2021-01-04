@@ -4,11 +4,14 @@ class Master extends Phaser.Scene {
 		super(level)
 		this.level = level;
 		this.nextLevel = {
-			'StartScreen': 'Level1',
+			'Tutorial2': 'Level1',
 			'Level1': 'Level2',
 			'Level2': 'Level1',
 		}
-		this.textColor = '#FF9CFF';
+		this.textColor = '#FF76FF';
+		this.color = 0xFF76FF;
+		this.hoverColor = 0xFF0CFF;
+		this.hoverTextColor = '#FF0CFF';
 		this.textShadowColor = '#FAEFF1';
 		this.fontChoice = `'Staatliches', cursive`;
   }
@@ -46,12 +49,12 @@ class Master extends Phaser.Scene {
 	}
 
 	createGravityPlayer(x, y) {
-		const plyr = this.physics.add.sprite(x, y, 'player').setScale(.5);
-		plyr.setCollideWorldBounds(true);
-		plyr.body.setGravityY(1000);
-		plyr.body.setSize(100,400);
-		plyr.body.setOffset(200,100);
-		return plyr;
+		const character = this.physics.add.sprite(x, y, 'player').setScale(.5);
+		character.setCollideWorldBounds(true);
+		character.body.setGravityY(1000);
+		character.body.setSize(100,400);
+		character.body.setOffset(200,100);
+		return character;
 	}
 
 	createText(x, y, string, fontSize, shadow = 5) {
@@ -59,12 +62,15 @@ class Master extends Phaser.Scene {
 	}
 
 	textHoverFeature(text) {
-		text.on('pointerover', () => {
-      text.setShadow(3, 3, this.textShadowColor)
-		});
 		text.on('pointerout', () => {
-      text.setShadow(5, 5, this.textShadowColor)
-		})
+			text.setShadow(5, 5, this.textShadowColor);
+			text.setColor(this.textColor);
+		});
+		text.on('pointerover', () => {
+			text.setShadow(3, 3, this.textShadowColor);
+			text.setColor(this.hoverTextColor);
+			// console.log(text);
+		});
 
 	}
 
@@ -175,6 +181,48 @@ class Master extends Phaser.Scene {
 						})
 				})
 		}
+	}
+
+	characterMovement(character, state) {
+    if (state.cursors.right.isDown) {
+      character.flipX = false;
+      character.anims.play('run', true).once('animationcomplete', () => {
+        character.anims.play('idle', true);
+      })
+      character.x += 10;
+    } else if (state.cursors.left.isDown) {
+      character.flipX = true;
+      character.anims.play('run', true).once('animationcomplete', () => {
+        character.anims.play('idle', true);
+      })
+      character.x -= 10;
+    } else if (state.cursors.up.isDown) {
+      character.anims.play('run', true).once('animationcomplete', () => {
+        character.anims.play('idle', true);
+      })
+      character.y -= 10;
+    }
+	}
+
+	portalTravel(character, state) {
+		if (state.portalOpen) {
+			if (Phaser.Math.Distance.Between(state.portal.x, state.portal.y, character.x, character.y) < 20) {
+				if (character.y < 500) {
+					character.y = 850;
+					state.return = this.physics.add.sprite(character.x, character.y, 'portal').setScale(.5);
+					state.return.anims.playReverse('portal-return').once('animationcomplete', () => {
+						state.return.destroy();
+					})
+				} else {
+					character.y = 350;
+					state.return = this.physics.add.sprite(character.x, character.y, 'portal').setScale(.5);
+					state.return.anims.playReverse('portal-return').once('animationcomplete', () => {
+						state.return.destroy();
+					})
+				}
+			}
+		}
+
 	}
 
 }
