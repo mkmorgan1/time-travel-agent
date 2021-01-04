@@ -137,6 +137,46 @@ class Master extends Phaser.Scene {
 			repeat: -1
 		})
 	}
+
+	shootAnimation(character, state) {
+    /*  SPACEBAR SHOOTS  */
+    if (Phaser.Input.Keyboard.JustDown(state.cursors.space)) {
+      character.anims.play('shoot', true).once('animationcomplete', () => {
+        if (character.flipX && state.cursors.space.isDown) {
+          state.orb = this.physics.add.sprite(character.x - 50, character.y - 10, 'orb').setScale(.1);
+          state.orb.anims.play('orb-rotate', true);
+          state.orb.body.velocity.x = - 1000;
+
+        } else if (!character.flipX && state.cursors.space.isDown) {
+          state.orb = this.physics.add.sprite(character.x + 50, character.y - 10, 'orb').setScale(.1);
+          state.orb.anims.play('orb-rotate', true);
+          state.orb.body.velocity.x = 1000;
+        }
+      })
+    }
+    /*  ORB TURNS INTO PORTAL  */
+    if (state.orb && state.orb.body && Phaser.Math.Distance.Between(state.orb.x, state.orb.y, character.x, character.y) > 200) {
+			// DELETES EXISTING PORTAL
+			if (state.portal) {
+				state.portal.destroy();
+			}
+			// CREATES PORTAL
+			state.orb.body.velocity.x = 0;
+			state.portal = this.physics.add.sprite(state.orb.x, state.orb.y, 'portal').setScale(.5);
+			state.portal.body.setSize(400, 400);
+			state.portal.body.setOffset(50, 50);
+			state.orb.destroy();
+			state.portalOpen = true;
+				state.portal.anims.play('portal-grow').once('animationcomplete', () => {
+						state.portal.anims.playReverse('portal-grow').once('animationcomplete', () => {
+							console.log('done again')
+							state.portal.destroy();
+							state.portalOpen = false;
+						})
+				})
+		}
+	}
+
 }
 
 export default Master;
