@@ -26,7 +26,7 @@ class Tutorial1 extends Master {
     state.nextText = this.createText(900,900, 'Next', '100px', 5).setInteractive();
     this.textHoverFeature(state.nextText);
     state.nextText.on('pointerdown', () => {
-      this.scene.start('Level1');
+      this.scene.start('Tutorial2');
     }, this);
 
     /*  TUTORIAL CHARACTERS  */
@@ -44,25 +44,26 @@ class Tutorial1 extends Master {
 
   update() {
     this.shootAnimation(state.shooter, state);
+    this.characterMovement(state.walker, state);
 
-    if (state.cursors.right.isDown) {
-      state.walker.flipX = false;
-      state.walker.anims.play('run', true).once('animationcomplete', () => {
-        state.walker.anims.play('idle', true);
-      })
-      state.walker.x += 10;
-    } else if (state.cursors.left.isDown) {
-      state.walker.flipX = true;
-      state.walker.anims.play('run', true).once('animationcomplete', () => {
-        state.walker.anims.play('idle', true);
-      })
-      state.walker.x -= 10;
-    } else if (state.cursors.up.isDown) {
-      state.walker.anims.play('run', true).once('animationcomplete', () => {
-        state.walker.anims.play('idle', true);
-      })
-      state.walker.y -= 10;
-    }
+    // if (state.cursors.right.isDown) {
+    //   state.walker.flipX = false;
+    //   state.walker.anims.play('run', true).once('animationcomplete', () => {
+    //     state.walker.anims.play('idle', true);
+    //   })
+    //   state.walker.x += 10;
+    // } else if (state.cursors.left.isDown) {
+    //   state.walker.flipX = true;
+    //   state.walker.anims.play('run', true).once('animationcomplete', () => {
+    //     state.walker.anims.play('idle', true);
+    //   })
+    //   state.walker.x -= 10;
+    // } else if (state.cursors.up.isDown) {
+    //   state.walker.anims.play('run', true).once('animationcomplete', () => {
+    //     state.walker.anims.play('idle', true);
+    //   })
+    //   state.walker.y -= 10;
+    // }
   }
 }
 
