@@ -7,19 +7,6 @@ class Level extends Master {
   create() {
 		state.active = true;
 		this.createBackground(state);
-		// /*	FOREST	*/
-		// state.trees2 = this.add.image(2500,750, 'trees-2').setTint('0xccaacc');
-		// state.grass = this.add.image(2500,750,'grass');
-		// state.trees1 = this.add.image(2500,700,'trees-1');
-		// /*	CITY	*/
-		// state.city2 = this.add.image(2500,250, 'city-2');
-		// state.city1 = this.add.image(2500,250,'city-1');
-		// /*	GROUND	*/
-		// state.ground = this.physics.add.staticGroup();
-		// state.ground.create(2500,500, 'ground');
-		// state.ground.create(2500,0, 'ground');
-		// state.ground.create(2500,1000, 'ground');
-
 		/* Title */
 		state.title = this.createText(25, 25, this.levelName, '60px', );
 		/*	PLAYER	*/
