@@ -32,8 +32,9 @@ class Level extends Master {
 			child.move = this.tweens.add({
 				targets: child,
 				x: child.x + 200,
+				y: child.y + 10,
 				ease: 'Linear',
-				duration: 1000,
+				duration: Math.random() * 1000,
 				repeat: -1,
 				yoyo: true
 			})
@@ -110,7 +111,6 @@ class Level extends Master {
     	this.characterMovement(state.player, state);
 			this.portalTravel(state.player, state);
 		}
-
 		/*	END PORTAL	*/
 		if (state.player.x > 4500 && !state.endOpen) {
 			state.endOpen = true;

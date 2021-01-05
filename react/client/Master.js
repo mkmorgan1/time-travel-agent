@@ -6,16 +6,20 @@ class Master extends Phaser.Scene {
 		this.nextLevel = {
 			'StartScreen': 'Tutorial1',
 			'Tutorial1': 'Tutorial2',
-			'Tutorial2': 'Level1',
+			'Tutorial2': 'Tutorial3',
+			'Tutorial3': 'Level1',
 			'Level1': 'Level2',
 			'Level2': 'Credits',
+			'Credits': 'StartScreen'
 		}
 		this.previousLevel = {
+			'StartScreen': 'Credits',
 			'Tutorial1': 'StartScreen',
 			'Tutorial2': 'Tutorial1',
-			'Level1': 'Tutorial2',
+			'Tutorial3': 'Tutorial2',
+			'Level1': 'Tutorial3',
 			'Level2': 'Level1',
-			'Credits': 'Level2',
+			'Credits': 'Level2'
 		}
 		this.boxShadow = 0x0CE6FF;
 		this.textColor = '#FF76FF';

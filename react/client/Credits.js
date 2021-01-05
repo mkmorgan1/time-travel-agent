@@ -69,8 +69,9 @@ class  Credits extends Master {
     state.backText = this.createText(50, 900, '< Main Menue', '75px', 5).setInteractive();
     this.textHoverFeature(state.backText);
     state.backText.on('pointerdown', () => {
-      this.scene.start('StartScreen');
-    }, this);
+      this.scene.stop(this.level)
+			this.scene.start(this.nextLevel[this.level])
+		});
   }
 
   update() {

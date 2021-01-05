@@ -3,6 +3,7 @@ import Master from './Master.js';
 import StartScreen from './StartScreen';
 import Tutorial1 from './Tutorial1.js';
 import Tutorial2 from './Tutorial2.js';
+import Tutorial3 from './Tutorial3.js';
 import Level from './Level.js';
 import Level1 from './Level1.js';
 import Level2 from './Level2.js';
@@ -17,10 +18,10 @@ const config = {
     default: 'arcade',
     arcade: {
       enableBody: true,
-      debug: true
+      // debug: true
     }
   },
-  scene: [StartScreen, Tutorial1, Tutorial2, Level1, Level2, Credits]
+  scene: [StartScreen, Tutorial1, Tutorial2, Tutorial3, Level1, Level2, Credits]
 };
 
 const game = new Phaser.Game(config);
