@@ -35,8 +35,9 @@ class StartScreen extends Master {
 
     this.textHoverFeature(state.tutorial);
     state.tutorial.on('pointerdown', () => {
-      this.scene.start('Tutorial1');
-    }, this);
+      this.scene.stop(this.level);
+			this.scene.start(this.nextLevel[this.level]);
+    });
 
     this.createAnimations();
 

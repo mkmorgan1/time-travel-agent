@@ -19,15 +19,17 @@ class Tutorial1 extends Master {
     state.nextText = this.createText(900, 900, 'Next >', '75px', 5).setInteractive();
     this.textHoverFeature(state.nextText);
     state.nextText.on('pointerdown', () => {
-      this.scene.start('Tutorial2');
-    }, this);
+      this.scene.stop(this.level);
+			this.scene.start(this.nextLevel[this.level]);
+    });
 
     /*  BACK  */
     state.backText = this.createText(50, 900, '< Back', '75px', 5).setInteractive();
     this.textHoverFeature(state.backText);
     state.backText.on('pointerdown', () => {
-      this.scene.start('StartScreen');
-    }, this);
+      this.scene.stop(this.level);
+			this.scene.start(this.previousLevel[this.level]);
+    });
 
     /*  TUTORIAL CHARACTERS  */
     state.walker = this.createGravityPlayer(500, 300);

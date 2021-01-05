@@ -17,7 +17,7 @@ const config = {
     default: 'arcade',
     arcade: {
       enableBody: true,
-      // debug: true
+      debug: true
     }
   },
   scene: [StartScreen, Tutorial1, Tutorial2, Level1, Level2, Credits]

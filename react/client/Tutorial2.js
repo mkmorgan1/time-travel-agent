@@ -19,8 +19,10 @@ class Tutorial2 extends Master {
     state.backText = this.createText(50, 900, '< Back', '75px', 5).setInteractive();
     this.textHoverFeature(state.backText);
     state.backText.on('pointerdown', () => {
-      this.scene.start('Tutorial1');
-    }, this);
+      state.portalOpen = false;
+      this.scene.stop(this.level);
+			this.scene.start(this.previousLevel[this.level]);
+    });
 
     /*	END PORTAL	*/
 		state.endOpen = false;
@@ -38,6 +40,7 @@ class Tutorial2 extends Master {
     /*  COLLIDERS */
     this.physics.add.collider(state.player, state.ground);
     this.physics.add.collider(state.player, state.end, () => {
+      state.portalOpen = false;
 			this.scene.stop(this.level)
 			this.scene.start(this.nextLevel[this.level])
 		});
