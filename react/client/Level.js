@@ -31,10 +31,10 @@ class Level extends Master {
 			child.anims.play('baddy-movement');
 			child.move = this.tweens.add({
 				targets: child,
-				x: child.x + 200,
+				x: child.x + this.baddyPath,
 				y: child.y + 10,
 				ease: 'Linear',
-				duration: Math.random() * 1000,
+				duration: (Math.random() * 500) + 500,
 				repeat: -1,
 				yoyo: true
 			})

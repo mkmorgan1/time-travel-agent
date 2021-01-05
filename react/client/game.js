@@ -7,6 +7,8 @@ import Tutorial3 from './Tutorial3.js';
 import Level from './Level.js';
 import Level1 from './Level1.js';
 import Level2 from './Level2.js';
+import Level3 from './Level3.js';
+import Level4 from './Level4.js';
 import Credits from './Credits.js';
 
 const config = {
@@ -21,7 +23,7 @@ const config = {
       // debug: true
     }
   },
-  scene: [StartScreen, Tutorial1, Tutorial2, Tutorial3, Level1, Level2, Credits]
+  scene: [StartScreen, Tutorial1, Tutorial2, Tutorial3, Level1, Level2, Level3, Level4, Credits]
 };
 
 const game = new Phaser.Game(config);
