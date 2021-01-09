@@ -73,8 +73,8 @@ class Level extends Master {
 				state.portalOpen = false;
 			}, this);
 
-			// MAIN MENUE
-			state.mainText = this.createText(state.centerX, 625, 'Main Menue', state.optionsTextSize).setOrigin(.5).setInteractive();
+			// MAIN MENU
+			state.mainText = this.createText(state.centerX, 625, 'Main Menu', state.optionsTextSize).setOrigin(.5).setInteractive();
 			this.textHoverFeature(state.mainText);
 			state.mainText.on('pointerdown', () => {
 				this.scene.stop(this.level);

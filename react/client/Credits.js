@@ -24,7 +24,7 @@ class  Credits extends Master {
     state.matthewMorgan = this.add.group();
     state.creditTitle = this.add.group();
     state.creditTitle.add(this.createText(state.titleX, 100, 'GAME ENGINE:', '75px'));
-    state.phaserText = this.createText(state.nameX, 175, 'PHASER.JS ', '75px');
+    state.phaserText = this.createText(state.nameX, 175, 'PHASER.IO ', '75px');
     state.creditTitle.add(this.createText(state.titleX, 300, 'ART & ANIMATION:', '75px'));
     state.matthewMorgan.add(this.createText(state.nameX, 375, 'Matthew Morgan', '75px'));
     state.creditTitle.add(this.createText(state.titleX, 500, 'CONCEPT & DESIGN:', '75px'));
@@ -66,7 +66,7 @@ class  Credits extends Master {
     })
 
     /*  MAIN MENUES  */
-    state.backText = this.createText(50, 900, '< Main Menue', '75px', 5).setInteractive();
+    state.backText = this.createText(50, 900, '< Main Menu', '75px', 5).setInteractive();
     this.textHoverFeature(state.backText);
     state.backText.on('pointerdown', () => {
       this.scene.stop(this.level)
