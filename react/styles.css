@@ -1,7 +1,17 @@
+.device {display:none;}
+.desktop {display:display;}
+
+
 canvas {
   display: block;
   width: 50%;
   margin: auto;
+}
+
+@media (max-width : 500px) {
+  .device {display:block;}
+  .desktop {display:none;}
+  canvas {width: 100%}
 }
 
 body {

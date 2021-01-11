@@ -11,10 +11,11 @@ import Level3 from './Level3.js';
 import Level4 from './Level4.js';
 import Credits from './Credits.js';
 
+
 const config = {
   type: Phaser.CANVAS, //AUTO
   width: 1100,
-  height: 1000,
+  height: 1000,//window.innerHeight,
   backgroundColor: "b9eaff",
   physics: {
     default: 'arcade',

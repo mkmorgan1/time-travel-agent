@@ -56,7 +56,8 @@ class Level extends Master {
 			/*	GAMEOVER TEXT	*/
 			state.gameOverTextSize = '175px';
 			state.centerX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
-			state.centerY = this.cameras.main.worldView.y + this.cameras.main.height / 2;
+			state.centerY = this.cameras.main.worldView.y + 1000 / 2;
+			console.log(this.cameras.main.height);
 			state.optionsTextSize = '105px';
 			// RECTANGLE
 			state.rectangle = this.add.rectangle(state.centerX, state.centerY, 750, 500, this.hoverColor)
