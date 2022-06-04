@@ -14,6 +14,10 @@ canvas {
   canvas {width: 100%}
 }
 
+@media (min-width : 501px) {
+  canvas {width: 100vh}
+}
+
 body {
   font-family: 'Staatliches', cursive;
 }
