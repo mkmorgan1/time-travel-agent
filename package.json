@@ -4,7 +4,8 @@
   "description": "A game where you are a time traveling agent",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/index.js",
+    "start": "node server/index.js",
+    "dev": "nodemon server/index.js",
     "start:pm2": "pm2 start ./server/index.js",
     "stop:pm2": "pm2 stop ./server/index.js",
     "build": "webpack -d -watch",
