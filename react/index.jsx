@@ -20,8 +20,10 @@ const Index = () => {
   }, [])
   return (
     <div>
-      <div className='device'>TIME TRAVEL AGENT {mobile}</div>
-      <div className='desktop'>TIME TRAVEL AGENT </div>
+      <div className='title'>
+        <div className='device'>TIME TRAVEL AGENT {mobile}</div>
+        <div className='desktop'>TIME TRAVEL AGENT </div>
+      </div>
       <div id="game">
         <script src="./client/game.js"></script>
       </div>

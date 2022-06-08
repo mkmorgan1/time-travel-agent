@@ -21,3 +21,7 @@ canvas {
 body {
   font-family: 'Staatliches', cursive;
 }
+
+.title {
+  text-align: center;
+}
