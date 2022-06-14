@@ -1,9 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './client/Master.js'
-import './client/Level.js';
-import './client/Level1.js';
-import './client/Level2.js';
 import './client/game.js';
 import './styles.css'
 
