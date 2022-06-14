@@ -17,14 +17,13 @@ const Index = () => {
     window.addEventListener('resize', handleResize)
   }, [])
   return (
-    <div>
+    <div className='full-game'>
       <div className='title'>
         <div className='device'>TIME TRAVEL AGENT {mobile}</div>
         <div className='desktop'>TIME TRAVEL AGENT </div>
       </div>
-      <div id="game">
-        <script src="./client/game.js"></script>
-      </div>
+      <div id='phaser-game'></div>
+      <script src="./client/game.js"></script>
       <div className='button-box'>
         <SpaceBar/>
         <ArrowKeys/>

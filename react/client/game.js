@@ -13,15 +13,15 @@ import Credits from './Credits.js';
 
 
 const config = {
-  type: Phaser.CANVAS, //AUTO
+  type: Phaser.CANVAS,
   width: 1100,
-  height: 1000,//window.innerHeight,
-  backgroundColor: "b9eaff",
+  height: 1000,
+  backgroundColor: 'b9eaff',
+  parent: 'phaser-game',
   physics: {
     default: 'arcade',
     arcade: {
       enableBody: true,
-      // debug: true
     }
   },
   scene: [StartScreen, Tutorial1, Tutorial2, Tutorial3, Level1, Level2, Level3, Level4, Credits]
