@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './client/game.js';
 import './styles.css'
 import SpaceBar from './client/SpaceBar.jsx';
-import ArrowKeys from './client/ArrowKeys.jsx';
+import ArrowKey from './client/ArrowKey.jsx';
 
 const Index = () => {
   let mobile = 'Mobile Version';
@@ -26,7 +26,8 @@ const Index = () => {
       <script src="./client/game.js"></script>
       <div className='button-box'>
         <SpaceBar/>
-        <ArrowKeys/>
+        <ArrowKey arrow={'<'}/>
+        <ArrowKey arrow={'>'}/>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import React from 'react'
 const SpaceBar = () => {
   return (
     <>
-      <button className='space_bar'>Space</button>
+      <button className='space-bar'>Space</button>
     </>
   )
 }

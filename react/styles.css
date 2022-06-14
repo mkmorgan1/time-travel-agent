@@ -13,7 +13,7 @@ body {
 .desktop {display:display;}
 
 
-canvas {
+.full-game {
   display: block;
   margin: auto;
   width: 100%;
@@ -27,4 +27,19 @@ canvas {
 
 .title {
   text-align: center;
+}
+
+.arrow-key, .space-bar {
+  grid-area: 'button';
+  height: 100px;
+}
+
+.button-box {
+  display: grid;
+  grid-template-columns: 50% 25% 25%;
+  grid-template-rows: auto;
+  align-items: center;
+  grid-template-areas:
+    "button button button";
+  row-gap: 5%;
 }
