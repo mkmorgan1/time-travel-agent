@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './client/game.js';
 import './styles.css'
+import SpaceBar from './client/SpaceBar.jsx';
+import ArrowKeys from './client/ArrowKeys.jsx';
 
 const Index = () => {
   let mobile = 'Mobile Version';
@@ -22,6 +24,10 @@ const Index = () => {
       </div>
       <div id="game">
         <script src="./client/game.js"></script>
+      </div>
+      <div className='button-box'>
+        <SpaceBar/>
+        <ArrowKeys/>
       </div>
     </div>
   );

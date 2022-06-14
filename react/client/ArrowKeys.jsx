@@ -1,6 +1,6 @@
 import react from 'react'
 
-export default ArrowKeys = () => {
+const ArrowKeys = () => {
   return (
     <>
       <div className='arrow-keys'>
@@ -11,3 +11,5 @@ export default ArrowKeys = () => {
     </>
   )
 }
+
+export default ArrowKeys
