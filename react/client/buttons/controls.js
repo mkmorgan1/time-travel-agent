@@ -1,6 +1,5 @@
 
-export const createControlButton = (parent, coordinates, color, callback) => {
-  const spaceBar = parent.add.rectangle(...coordinates, color).setInteractive()
-  spaceBar.on('pointerdown', callback)
-  return spaceBar
+export const createButton = (parent, coordinates, color) => {
+  const button = parent.add.rectangle(...coordinates, color).setInteractive()
+  return button
 }

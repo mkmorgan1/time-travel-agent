@@ -1,5 +1,5 @@
 import Master from './Master.js';
-import {createControlButton} from './buttons/controls.js'
+import {createControlButton, createButton} from './buttons/controls.js'
 
 const state = {};
 class Level extends Master {
@@ -20,10 +20,19 @@ class Level extends Master {
 		state.baddy = this.physics.add.group();
 		this.createBaddies();
 
-		state.spaceBar = createControlButton(this, [200, 200, 148, 148], 0x6666ff,() => {this.shootAnimation(state.player, state, true)})
-		state.leftButton = this.add.rectangle(400, 200, 148, 148, 0x6666ff).setInteractive();
-		state.rightButton = this.add.rectangle(600, 200, 148, 148, 0x6666ff).setInteractive();
+		state.pointer = this.input.activePointer;
 
+		state.spaceBar = createButton(this, [200, 200, 148, 148], 0x6666ff)
+		state.spaceBar.on('pointerdown', () => state.spacePressed = true)
+		state.spaceBar.on('pointerup', () => state.spacePressed = false)
+
+		state.leftButton = createButton(this, [400, 200, 148, 148], 0x6666ff)
+		state.leftButton.on('pointerdown', () => state.leftPressed = true)
+		state.leftButton.on('pointerup', () => state.leftPressed = false)
+
+		state.rightButton = createButton(this, [600, 200, 148, 148], 0x6666ff)
+		state.rightButton.on('pointerdown', () => state.rightPressed = true)
+		state.rightButton.on('pointerup', () => state.rightPressed = false)
 
 		/*	ANIMATIONS CREATOR FUNCTION / CURSORS	*/
 		state.cursors = this.input.keyboard.createCursorKeys();
@@ -57,11 +66,13 @@ class Level extends Master {
 		this.physics.add.collider(state.player, state.ground);
 		this.physics.add.collider(state.baddy, state.ground);
 		this.physics.add.collider(state.player, state.baddy, () => {
+			state.leftPressed = false
+			state.rightPressed = false
+			state.spacePressed = false
 			/*	GAMEOVER TEXT	*/
 			state.gameOverTextSize = '175px';
 			state.centerX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
 			state.centerY = this.cameras.main.worldView.y + 1000 / 2;
-			console.log(this.cameras.main.height);
 			state.optionsTextSize = '105px';
 			// RECTANGLE
 			state.rectangle = this.add.rectangle(state.centerX, state.centerY, 750, 500, this.hoverColor)
@@ -112,8 +123,8 @@ class Level extends Master {
 
 	update() {
 		if (!state.pause) {
-			this.shootAnimation(state.player, state);
-    	this.characterMovement(state.player, state);
+			this.shootAnimation(state, state.player, state.spacePressed);
+    	this.characterMovement(state, state.player, state.leftPressed, state.rightPressed);
 			this.portalTravel(state.player, state);
 		}
 		/*	END PORTAL	*/

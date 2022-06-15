@@ -8,12 +8,12 @@ const Index = () => {
   if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
     mobile = 'Mobile Version'
   }
-  React.useEffect(() => {
-    function handleResize() {
-      console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
-    }
-    window.addEventListener('resize', handleResize)
-  }, [])
+  // React.useEffect(() => {
+  //   function handleResize() {
+  //     console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
+  //   }
+  //   window.addEventListener('resize', handleResize)
+  // }, [])
 
   return (
     <div className='full-game'>

@@ -99,7 +99,6 @@ class Master extends Phaser.Scene {
 		text.on('pointerover', () => {
 			text.setShadow(3, 3, this.textShadowColor);
 			text.setColor(this.hoverTextColor);
-			// console.log(text);
 		});
 
 	}
@@ -180,16 +179,16 @@ class Master extends Phaser.Scene {
 		})
 	}
 
-	shootAnimation(character, state, button =false) {
+	shootAnimation(state, character, spacePressed) {
     /*  SPACEBAR SHOOTS  */
-    if (Phaser.Input.Keyboard.JustDown(state.cursors.space) || button) {
+    if (Phaser.Input.Keyboard.JustDown(state.cursors.space) || (spacePressed && state.pointer.isDown)) {
       character.anims.play('shoot', true).once('animationcomplete', () => {
-        if (character.flipX && (state.cursors.space.isDown || button)) {
+        if (character.flipX && (state.cursors.space.isDown || (spacePressed && state.pointer.isDown))) {
           state.orb = this.physics.add.sprite(character.x - 50, character.y - 10, 'orb').setScale(.1);
           state.orb.anims.play('orb-rotate', true);
           state.orb.body.velocity.x = - 1000;
 
-        } else if (!character.flipX && (state.cursors.space.isDown || button)) {
+        } else if (!character.flipX && (state.cursors.space.isDown || (spacePressed && state.pointer.isDown))) {
           state.orb = this.physics.add.sprite(character.x + 50, character.y - 10, 'orb').setScale(.1);
           state.orb.anims.play('orb-rotate', true);
           state.orb.body.velocity.x = 1000;
@@ -211,7 +210,6 @@ class Master extends Phaser.Scene {
 			state.portalOpen = true;
 				state.portal.anims.play('portal-grow').once('animationcomplete', () => {
 						state.portal.anims.playReverse('portal-grow').once('animationcomplete', () => {
-							console.log('done again')
 							state.portal.destroy();
 							state.portalOpen = false;
 						})
@@ -219,23 +217,23 @@ class Master extends Phaser.Scene {
 		}
 	}
 
-	characterMovement(character, state) {
-    if (state.cursors.right.isDown) {
-      character.flipX = false;
-      character.anims.play('run', true).once('animationcomplete', () => {
-        character.anims.play('idle', true);
-      })
-      character.x += 10;
-    } else if (state.cursors.left.isDown) {
-      character.flipX = true;
-      character.anims.play('run', true).once('animationcomplete', () => {
-        character.anims.play('idle', true);
-      })
-      character.x -= 10;
+	characterMove(character) {
+		character.anims.play('run', true).once('animationcomplete', () => {
+			character.anims.play('idle', true);
+		})
+	}
+
+	characterMovement(state, character, leftPressed, rightPressed) {
+    if (state.cursors.right.isDown || (state.pointer.isDown && rightPressed)) {
+			character.flipX = false;
+      this.characterMove(character)
+			character.x += 10;
+    } else if (state.cursors.left.isDown || (state.pointer.isDown && leftPressed)) {
+			character.flipX = true;
+			this.characterMove(character)
+			character.x -= 10;
     } else if (state.cursors.up.isDown) {
-      character.anims.play('run', true).once('animationcomplete', () => {
-        character.anims.play('idle', true);
-      })
+      this.characterMove(character)
       character.y -= 10;
     }
 	}
