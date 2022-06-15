@@ -1,5 +1,5 @@
 import Master from './Master.js';
-// import Phaser from 'phaser';
+import {createControlButton} from './buttons/controls.js'
 
 const state = {};
 class Level extends Master {
@@ -19,6 +19,10 @@ class Level extends Master {
 		/*	BADDY	*/
 		state.baddy = this.physics.add.group();
 		this.createBaddies();
+
+		state.spaceBar = createControlButton(this, [200, 200, 148, 148], 0x6666ff,() => {this.shootAnimation(state.player, state, true)})
+		state.leftButton = this.add.rectangle(400, 200, 148, 148, 0x6666ff).setInteractive();
+		state.rightButton = this.add.rectangle(600, 200, 148, 148, 0x6666ff).setInteractive();
 
 
 		/*	ANIMATIONS CREATOR FUNCTION / CURSORS	*/

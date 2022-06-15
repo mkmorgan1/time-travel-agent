@@ -180,16 +180,16 @@ class Master extends Phaser.Scene {
 		})
 	}
 
-	shootAnimation(character, state) {
+	shootAnimation(character, state, button =false) {
     /*  SPACEBAR SHOOTS  */
-    if (Phaser.Input.Keyboard.JustDown(state.cursors.space)) {
+    if (Phaser.Input.Keyboard.JustDown(state.cursors.space) || button) {
       character.anims.play('shoot', true).once('animationcomplete', () => {
-        if (character.flipX && state.cursors.space.isDown) {
+        if (character.flipX && (state.cursors.space.isDown || button)) {
           state.orb = this.physics.add.sprite(character.x - 50, character.y - 10, 'orb').setScale(.1);
           state.orb.anims.play('orb-rotate', true);
           state.orb.body.velocity.x = - 1000;
 
-        } else if (!character.flipX && state.cursors.space.isDown) {
+        } else if (!character.flipX && (state.cursors.space.isDown || button)) {
           state.orb = this.physics.add.sprite(character.x + 50, character.y - 10, 'orb').setScale(.1);
           state.orb.anims.play('orb-rotate', true);
           state.orb.body.velocity.x = 1000;
