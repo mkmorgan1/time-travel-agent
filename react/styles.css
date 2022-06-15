@@ -28,18 +28,3 @@ body {
 .title {
   text-align: center;
 }
-
-.arrow-key, .space-bar {
-  grid-area: 'button';
-  height: 100px;
-}
-
-.button-box {
-  display: grid;
-  grid-template-columns: 50% 25% 25%;
-  grid-template-rows: auto;
-  align-items: center;
-  grid-template-areas:
-    "button button button";
-  row-gap: 5%;
-}

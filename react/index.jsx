@@ -2,8 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './client/game.js';
 import './styles.css'
-import SpaceBar from './client/SpaceBar.jsx';
-import ArrowKey from './client/ArrowKey.jsx';
 
 const Index = () => {
   let mobile = 'Mobile Version';
@@ -16,6 +14,7 @@ const Index = () => {
     }
     window.addEventListener('resize', handleResize)
   }, [])
+
   return (
     <div className='full-game'>
       <div className='title'>
@@ -24,11 +23,7 @@ const Index = () => {
       </div>
       <div id='phaser-game'></div>
       <script src="./client/game.js"></script>
-      <div className='button-box'>
-        <SpaceBar/>
-        <ArrowKey arrow={'<'}/>
-        <ArrowKey arrow={'>'}/>
-      </div>
+      <input></input>
     </div>
   );
 
