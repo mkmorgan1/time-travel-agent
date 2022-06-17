@@ -1,4 +1,5 @@
 import Master from './Master.js';
+import { createButton } from './buttons/controls'
 
 const state = {};
 class Tutorial2 extends Master {
@@ -33,7 +34,7 @@ class Tutorial2 extends Master {
       state.end.anims.play('end-open');
     });
 
-    /*  ANIMATIONS AND CONTROLES  */
+    /*  ANIMATIONS AND CONTROLS  */
     this.createAnimations();
     state.cursors = this.input.keyboard.createCursorKeys();
 
@@ -47,15 +48,15 @@ class Tutorial2 extends Master {
 
     state.pointer = this.input.activePointer;
 
-		state.spaceBar = createButton(this, [250, 1150], [400, 200], 'Space')
-		state.spaceBar.on('pointerdown', () => state.spacePressed = true)
-		state.spaceBar.on('pointerup', () => state.spacePressed = false)
-
-		state.leftButton = createButton(this, [650, 1150], [200, 200], '<')
+		state.leftButton = createButton(this, [150, 1150], [200, 200], '<')
 		state.leftButton.on('pointerdown', () => state.leftPressed = true)
 		state.leftButton.on('pointerup', () => state.leftPressed = false)
 
-		state.rightButton = createButton(this, [900, 1150], [200, 200], '>')
+		state.spaceBar = createButton(this, [550, 1150], [400, 200], 'Space')
+		state.spaceBar.on('pointerdown', () => state.spacePressed = true)
+		state.spaceBar.on('pointerup', () => state.spacePressed = false)
+
+		state.rightButton = createButton(this, [950, 1150], [200, 200], '>')
 		state.rightButton.on('pointerdown', () => state.rightPressed = true)
 		state.rightButton.on('pointerup', () => state.rightPressed = false)
   }
@@ -64,7 +65,7 @@ class Tutorial2 extends Master {
 		if (!state.pause) {
 			this.shootAnimation(state, state.player);
     	this.characterMovement(state, state.player);
-			this.portalTravel(state, state.player);
+			this.portalTravel(state.player, state);
 		}
 	}
 
