@@ -22,15 +22,15 @@ class Level extends Master {
 
 		state.pointer = this.input.activePointer;
 
-		state.spaceBar = createButton(this, [200, 200, 148, 148], 0x6666ff)
+		state.spaceBar = createButton(this, [250, 1150], [400, 200], 'Space')
 		state.spaceBar.on('pointerdown', () => state.spacePressed = true)
 		state.spaceBar.on('pointerup', () => state.spacePressed = false)
 
-		state.leftButton = createButton(this, [400, 200, 148, 148], 0x6666ff)
+		state.leftButton = createButton(this, [650, 1150], [200, 200], '<')
 		state.leftButton.on('pointerdown', () => state.leftPressed = true)
 		state.leftButton.on('pointerup', () => state.leftPressed = false)
 
-		state.rightButton = createButton(this, [600, 200, 148, 148], 0x6666ff)
+		state.rightButton = createButton(this, [900, 1150], [200, 200], '>')
 		state.rightButton.on('pointerdown', () => state.rightPressed = true)
 		state.rightButton.on('pointerup', () => state.rightPressed = false)
 
@@ -70,7 +70,6 @@ class Level extends Master {
 			state.rightPressed = false
 			state.spacePressed = false
 			/*	GAMEOVER TEXT	*/
-			state.gameOverTextSize = '175px';
 			state.centerX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
 			state.centerY = this.cameras.main.worldView.y + 1000 / 2;
 			state.optionsTextSize = '105px';
@@ -78,7 +77,7 @@ class Level extends Master {
 			state.rectangle = this.add.rectangle(state.centerX, state.centerY, 750, 500, this.hoverColor)
 			this.add.rectangle(state.centerX - 5, state.centerY - 5, 750, 500, 0x0CE6FF)
 			// GAME OVER
-			state.gameOver = this.createText(state.centerX, 350, 'Game Over', state.gameOverTextSize).setOrigin(.5);
+			state.gameOver = this.createText(state.centerX, 350, 'Game Over', '175px').setOrigin(.5);
 			// RESTART
 			state.restartText = this.createText(state.centerX, 525, 'Restart', state.optionsTextSize).setOrigin(.5).setInteractive();
 			this.textHoverFeature(state.restartText);

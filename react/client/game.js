@@ -15,7 +15,7 @@ import Credits from './Credits.js';
 const config = {
   type: Phaser.CANVAS,
   width: 1100,
-  height: 1000,
+  height: 1300,
   backgroundColor: 'b9eaff',
   parent: 'phaser-game',
   physics: {

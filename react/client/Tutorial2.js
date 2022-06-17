@@ -44,13 +44,27 @@ class Tutorial2 extends Master {
 			this.scene.stop(this.level)
 			this.scene.start(this.nextLevel[this.level])
 		});
+
+    state.pointer = this.input.activePointer;
+
+		state.spaceBar = createButton(this, [250, 1150], [400, 200], 'Space')
+		state.spaceBar.on('pointerdown', () => state.spacePressed = true)
+		state.spaceBar.on('pointerup', () => state.spacePressed = false)
+
+		state.leftButton = createButton(this, [650, 1150], [200, 200], '<')
+		state.leftButton.on('pointerdown', () => state.leftPressed = true)
+		state.leftButton.on('pointerup', () => state.leftPressed = false)
+
+		state.rightButton = createButton(this, [900, 1150], [200, 200], '>')
+		state.rightButton.on('pointerdown', () => state.rightPressed = true)
+		state.rightButton.on('pointerup', () => state.rightPressed = false)
   }
 
   update() {
 		if (!state.pause) {
-			this.shootAnimation(state.player, state);
-    	this.characterMovement(state.player, state);
-			this.portalTravel(state.player, state);
+			this.shootAnimation(state, state.player);
+    	this.characterMovement(state, state.player);
+			this.portalTravel(state, state.player);
 		}
 	}
 

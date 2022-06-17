@@ -179,7 +179,7 @@ class Master extends Phaser.Scene {
 		})
 	}
 
-	shootAnimation(state, character, spacePressed) {
+	shootAnimation(state, character, spacePressed=false) {
     /*  SPACEBAR SHOOTS  */
     if (Phaser.Input.Keyboard.JustDown(state.cursors.space) || (spacePressed && state.pointer.isDown)) {
       character.anims.play('shoot', true).once('animationcomplete', () => {
@@ -223,7 +223,7 @@ class Master extends Phaser.Scene {
 		})
 	}
 
-	characterMovement(state, character, leftPressed, rightPressed) {
+	characterMovement(state, character, leftPressed=false, rightPressed=false) {
     if (state.cursors.right.isDown || (state.pointer.isDown && rightPressed)) {
 			character.flipX = false;
       this.characterMove(character)

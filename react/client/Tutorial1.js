@@ -1,4 +1,5 @@
 import Master from './Master.js';
+import { createButton } from './buttons/controls'
 
 const state = {};
 class Tutorial1 extends Master {
@@ -33,7 +34,7 @@ class Tutorial1 extends Master {
 
     /*  TUTORIAL CHARACTERS  */
     state.walker = this.createGravityPlayer(500, 300);
-    state.shooter = this.createGravityPlayer(500, 800);
+    state.shooter = this.createGravityPlayer(500, 700);
 
     /*  ANIMATIONS AND CONTROLES  */
     this.createAnimations();
@@ -41,12 +42,26 @@ class Tutorial1 extends Master {
 
     /*  COLLIDERS */
     this.physics.add.collider(state.walker, state.ground);
-    this.physics.add.collider(state.walker, state.ground);
+    this.physics.add.collider(state.shooter, state.ground);
+
+    state.pointer = this.input.activePointer;
+
+		state.spaceBar = createButton(this, [250, 1150], [400, 200], 'Space')
+		state.spaceBar.on('pointerdown', () => state.spacePressed = true)
+		state.spaceBar.on('pointerup', () => state.spacePressed = false)
+
+		state.leftButton = createButton(this, [650, 1150], [200, 200], '<')
+		state.leftButton.on('pointerdown', () => state.leftPressed = true)
+		state.leftButton.on('pointerup', () => state.leftPressed = false)
+
+		state.rightButton = createButton(this, [900, 1150], [200, 200], '>')
+		state.rightButton.on('pointerdown', () => state.rightPressed = true)
+		state.rightButton.on('pointerup', () => state.rightPressed = false)
   }
 
   update() {
-    this.shootAnimation(state.shooter, state);
-    this.characterMovement(state.walker, state);
+    this.shootAnimation(state, state.shooter);
+    this.characterMovement(state, state.walker);
   }
 }
 
