@@ -23,7 +23,6 @@ const Index = () => {
       </div>
       <div id='phaser-game'></div>
       <script src="./client/game.js"></script>
-      <input></input>
     </div>
   );
 
