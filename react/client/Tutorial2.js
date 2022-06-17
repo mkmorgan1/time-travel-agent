@@ -63,8 +63,8 @@ class Tutorial2 extends Master {
 
   update() {
 		if (!state.pause) {
-			this.shootAnimation(state, state.player);
-    	this.characterMovement(state, state.player);
+			this.shootAnimation(state, state.player, state.spacePressed);
+    	this.characterMovement(state, state.player, state.leftPressed, state.rightPressed);
 			this.portalTravel(state.player, state);
 		}
 	}

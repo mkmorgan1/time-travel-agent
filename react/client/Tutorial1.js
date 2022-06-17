@@ -60,8 +60,8 @@ class Tutorial1 extends Master {
   }
 
   update() {
-    this.shootAnimation(state, state.shooter);
-    this.characterMovement(state, state.walker);
+    this.shootAnimation(state, state.shooter, state.spacePressed);
+    this.characterMovement(state, state.walker, state.leftPressed, state.rightPressed);
   }
 }
 
