@@ -183,12 +183,12 @@ class Master extends Phaser.Scene {
     /*  SPACEBAR SHOOTS  */
     if (Phaser.Input.Keyboard.JustDown(state.cursors.space) || (spacePressed && state.pointer.isDown)) {
       character.anims.play('shoot', true).once('animationcomplete', () => {
-        if (character.flipX && (state.cursors.space.isDown || (spacePressed && state.pointer.isDown))) {
+        if (character.flipX) {
           state.orb = this.physics.add.sprite(character.x - 50, character.y - 10, 'orb').setScale(.1);
           state.orb.anims.play('orb-rotate', true);
           state.orb.body.velocity.x = - 1000;
 
-        } else if (!character.flipX && (state.cursors.space.isDown || (spacePressed && state.pointer.isDown))) {
+        } else if (!character.flipX) {
           state.orb = this.physics.add.sprite(character.x + 50, character.y - 10, 'orb').setScale(.1);
           state.orb.anims.play('orb-rotate', true);
           state.orb.body.velocity.x = 1000;
